@@ -2,7 +2,7 @@
     "name": "velser/ondato-api-php-client",
     "description": "Ondato API Client for PHP",
     "type": "library",
-    "license": "MIT License",
+    "license": "MIT",
     "authors": [
         {
             "name": "Sergej Veliseicik",
