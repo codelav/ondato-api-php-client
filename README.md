@@ -9,6 +9,7 @@ Ondato API Client for PHP. Used for KYC and Verifid integration with Ondato flow
 # Installation
 
 Add github repository to your composer.json
+
 ```
 "repositories": [
     {
@@ -17,12 +18,10 @@ Add github repository to your composer.json
     }
 ]
 ```
-Add library definition to composer.json as usual
-```
-"require": {
-        "velser/ondato-api-php-client": "^7.1"
-}
-```
+
+Add and install library
+
+`composer require velser/ondato-api-php-client`
 
 # Usage
 
@@ -63,21 +62,20 @@ $kycApiClient = new Velser\OndatoApiClient\VerifidApiClient(
 
 ### Notes
 
-- Accept header is mandatory, as it otherwise server will return multipart response when sending multipart request
-- base_uri is root uri of Ondato API without specific path
+- Accept header is mandatory, as it otherwise server will return multipart response when sending multipart request;
+- base_uri is root uri of Ondato API without specific path;
 
 
 # TODO
 
-- add factory for quick client building via DI
-- tests
-- client exceptions remap to specific exceptions
+- add factory for quick client building via DI;
+- tests;
+- client exceptions remap to specific exceptions;
 
 # Contribution/Maintaining
 
-Library is maintainable as it's needed. Any contribution/fixes/improvements are appreciated;
-
-This library is not related to Ondato as itself. It's just an integration. So only this repository related stuff is discussed within this repository;
+- Library is maintainable as it's needed. Any contribution/fixes/improvements are appreciated;
+- This library is not related to Ondato itself. It's just an integration. So only this repository related stuff is discussed within this repository;
 
 # License
 
