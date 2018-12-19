@@ -8,19 +8,6 @@ Ondato API Client for PHP. Used for KYC and Verifid integration with Ondato flow
 
 # Installation
 
-Add github repository to your composer.json
-
-```
-"repositories": [
-    {
-      "type" : "vcs",
-      "url"  : "https://github.com/velser/ondato-api-php-client.git"
-    }
-]
-```
-
-Add and install library
-
 `composer require velser/ondato-api-php-client`
 
 # Usage
