@@ -10,9 +10,13 @@ class CompareIdentificationMapper implements NormalizerInterface
 {
     public function mapToEntity(array $data)
     {
-        return (new CompareIdentificationResponse())
-            ->setFinalStatus($data['finalStatus'])
-            ->setFailedRules($data['failedRules'])
-            ;
+        $compareIdentificationResponse = (new CompareIdentificationResponse())
+            ->setFinalStatus($data['finalStatus']);
+
+        if (isset($data['failedRules'])) {
+            $compareIdentificationResponse->setFailedRules($data['failedRules']);
+        }
+
+        return $compareIdentificationResponse;
     }
 }
