@@ -8,7 +8,6 @@ class SessionData
     private $email;
     private $birthDate;
     private $firstName;
-    private $middleName;
     private $lastName;
     private $personalIdentityCode;
     private $phoneNumber;

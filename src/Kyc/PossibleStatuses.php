@@ -5,8 +5,8 @@ namespace Velser\OndatoApiClient\Kyc;
 
 final class PossibleStatuses
 {
-    const STATUS_APPROVED = 1;
-    const STATUS_SUCCESSFUL = 2;
-    const STATUS_PENDING = 3;
-    const STATUS_FAILED = 4;
+    const STATUS_APPROVED = 'APPROVED';
+    const STATUS_SUCCESSFUL = 'SUCCESSFUL';
+    const STATUS_PENDING = 'PENDING';
+    const STATUS_FAILED = 'FAILED';
 }

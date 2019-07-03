@@ -25,6 +25,10 @@ class ParsedDocumentDataMapper implements NormalizerInterface, DenormalizerInter
             $parsedDocumentData->setFirstName($data['firstName']);
         }
 
+        if (isset($data['middleName'])) {
+            $parsedDocumentData->setMiddleName($data['middleName']);
+        }
+
         if (isset($data['lastName'])) {
             $parsedDocumentData->setLastName($data['lastName']);
         }
@@ -41,12 +45,24 @@ class ParsedDocumentDataMapper implements NormalizerInterface, DenormalizerInter
             $parsedDocumentData->setExpireDate($data['expireDate']);
         }
 
+        if (isset($data['issueDate'])) {
+            $parsedDocumentData->setIssueDate($data['issueDate']);
+        }
+
         if (isset($data['country'])) {
             $parsedDocumentData->setCountry($data['country']);
         }
 
         if (isset($data['nationality'])) {
             $parsedDocumentData->setNationality($data['nationality']);
+        }
+
+        if (isset($data['gender'])) {
+            $parsedDocumentData->setGender($data['gender']);
+        }
+
+        if (isset($data['address'])) {
+            $parsedDocumentData->setAddress($data['address']);
         }
 
         return $parsedDocumentData;

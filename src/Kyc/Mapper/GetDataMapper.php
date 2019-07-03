@@ -8,7 +8,7 @@ use Velser\OndatoApiClient\Kyc\Entity\GetDataResponse;
 use Velser\OndatoApiClient\DenormalizerInterface;
 use Velser\OndatoApiClient\NormalizerInterface;
 
-class GetDataMapper implements NormalizerInterface, DenormalizerInterface
+class GetDataMapper implements NormalizerInterface
 {
     private $sessionDataMapper;
     private $parsedDocumentDataMapper;
@@ -24,15 +24,10 @@ class GetDataMapper implements NormalizerInterface, DenormalizerInterface
     public function mapToEntity(array $data): GetDataResponse
     {
         $getDataResponse = (new GetDataResponse())
-            ->setStatus($data['status'])
-            ->setIsCrossChecked($data['isCrossChecked'])
+            ->setStatus($data['identificationData']['status'])
         ;
 
-        if (isset($data['isFoundInSanctionList'])) {
-            $getDataResponse->setIsFoundInSanctionList($data['isFoundInSanctionList']);
-        }
-
-        if (isset($data['data'])) {
+        if (isset($data['requestData'])) {
             $getDataResponse->setSessionData($this->sessionDataMapper->mapToEntity($data['data']));
         }
 
@@ -43,18 +38,5 @@ class GetDataMapper implements NormalizerInterface, DenormalizerInterface
         }
 
         return $getDataResponse;
-    }
-
-    /**
-     * @param GetDataRequest $entity
-     *
-     * @return array
-     */
-    public function mapFromEntity($entity): array
-    {
-        return [
-            'apikey' => $entity->getApiKey(),
-            'token' => $entity->getToken(),
-        ];
     }
 }

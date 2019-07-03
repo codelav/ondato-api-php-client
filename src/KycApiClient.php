@@ -43,11 +43,7 @@ class KycApiClient
                 '/kyc/identifications/start',
                 [
                     'json' => $startSessionMapper->mapFromEntity($startSessionRequest),
-                ],
-                [
-                    'headers' => [
-                        'x-api-key' => $this->apiKey
-                    ]
+                    'headers' => ['x-api-key' => $this->apiKey]
                 ]
             );
 
@@ -59,22 +55,17 @@ class KycApiClient
         }
     }
 
-    public function getData(string $token)
+    public function getData(string $identificationId)
     {
-        $getDataRequest = (new GetDataRequest())
-            ->setApiKey($this->apiKey)
-            ->setToken($token)
-        ;
-
         $getDataMapper = new GetDataMapper(new SessionDataMapper(), new ParsedDocumentDataMapper());
 
         try {
             $response = $this->client->request(
                 'POST',
-                '/kyc/get-data',
+                "/kyc/identifications/$identificationId/data",
                 [
-                    'json' => $getDataMapper->mapFromEntity($getDataRequest),
-                ]
+                    'headers' => ['x-api-key' => $this->apiKey]
+                ],
             );
 
             return $getDataMapper->mapToEntity(json_decode($response->getBody()->getContents(), true));

@@ -5,29 +5,16 @@ namespace Velser\OndatoApiClient\Kyc\Entity;
 
 class GetDataRequest
 {
-    private $apiKey;
-    private $token;
+    private $identificationId;
 
-    public function getApiKey(): string
+    public function getIdentificationId(): string
     {
-        return $this->apiKey;
+        return $this->identificationId;
     }
 
-    public function setApiKey(string $apiKey): GetDataRequest
+    public function setIdentificationId(string $identificationId): GetDataRequest
     {
-        $this->apiKey = $apiKey;
-
-        return $this;
-    }
-
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-
-    public function setToken(string $token): GetDataRequest
-    {
-        $this->token = $token;
+        $this->identificationId = $token;
 
         return $this;
     }

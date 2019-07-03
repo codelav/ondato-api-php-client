@@ -5,23 +5,19 @@ namespace Velser\OndatoApiClient\Kyc\Entity;
 
 class ParsedDocumentData
 {
-    const DOCUMENT_TYPE_IDENTITY_CARD = 1;
-    const DOCUMENT_TYPE_PASSPORT = 2;
-    const DOCUMENT_TYPE_RESIDENCE_PERMIT = 3;
-    const DOCUMENT_TYPE_DRIVER_LICENCE = 4;
-    const DOCUMENT_TYPE_LOCAL_PASSPORT = 5;
-    const DOCUMENT_TYPE_SOCIAL_ID = 6;
-    const DOCUMENT_TYPE_OTHER = 7;
-
     private $personCode;
     private $birthDate;
     private $firstName;
+    private $middleName;
     private $lastName;
     private $documentNumber;
     private $documentType;
     private $expireDate;
+    private $issueDate;
     private $country;
     private $nationality;
+    private $gender;
+    private $address;
 
     public function getPersonCode(): ?string
     {
@@ -31,6 +27,42 @@ class ParsedDocumentData
     public function setPersonCode(string $personCode): ParsedDocumentData
     {
         $this->personCode = $personCode;
+
+        return $this;
+    }
+
+    public function getIssueDate(): string
+    {
+        return $this->issueDate;
+    }
+
+    public function setIssueDate($issueDate): ParsedDocumentData
+    {
+        $this->issueDate = $issueDate;
+
+        return $this;
+    }
+
+    public function getGender(): string
+    {
+        return $this->gender;
+    }
+
+    public function setGender($gender): ParsedDocumentData
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getAddress(): string
+    {
+        return $this->address;
+    }
+
+    public function setAddress($address): ParsedDocumentData
+    {
+        $this->address = $address;
 
         return $this;
     }
@@ -53,6 +85,18 @@ class ParsedDocumentData
     }
 
     public function setFirstName(string $firstName): ParsedDocumentData
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function geMiddleName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setMiddleName(string $firstName): ParsedDocumentData
     {
         $this->firstName = $firstName;
 

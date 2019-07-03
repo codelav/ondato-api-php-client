@@ -6,8 +6,6 @@ namespace Velser\OndatoApiClient\Kyc\Entity;
 class GetDataResponse
 {
     private $status;
-    private $isCrossChecked;
-    private $isFoundInSanctionList;
     private $sessionData;
     private $parsedDocumentData;
 
@@ -19,30 +17,6 @@ class GetDataResponse
     public function setStatus(int $status): GetDataResponse
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function getisCrossChecked(): bool
-    {
-        return $this->isCrossChecked;
-    }
-
-    public function setIsCrossChecked(bool $isCrossChecked): GetDataResponse
-    {
-        $this->isCrossChecked = $isCrossChecked;
-
-        return $this;
-    }
-
-    public function getisFoundInSanctionList(): ?bool
-    {
-        return $this->isFoundInSanctionList;
-    }
-
-    public function setIsFoundInSanctionList(bool $isFoundInSanctionList): GetDataResponse
-    {
-        $this->isFoundInSanctionList = $isFoundInSanctionList;
 
         return $this;
     }
