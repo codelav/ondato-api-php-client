@@ -23,6 +23,7 @@ class GetDataMapper implements NormalizerInterface
 
     public function mapToEntity(array $data): GetDataResponse
     {
+        print_r($data);
         $getDataResponse = (new GetDataResponse())
             ->setStatus($data['identificationData']['status'])
         ;

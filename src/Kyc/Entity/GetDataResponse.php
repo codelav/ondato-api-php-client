@@ -9,12 +9,12 @@ class GetDataResponse
     private $sessionData;
     private $parsedDocumentData;
 
-    public function getStatus(): int
+    public function getStatus(): string
     {
         return $this->status;
     }
 
-    public function setStatus(int $status): GetDataResponse
+    public function setStatus(string $status): GetDataResponse
     {
         $this->status = $status;
 

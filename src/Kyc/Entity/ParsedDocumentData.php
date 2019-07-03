@@ -127,12 +127,12 @@ class ParsedDocumentData
         return $this;
     }
 
-    public function getDocumentType(): ?int
+    public function getDocumentType(): ?string
     {
         return $this->documentType;
     }
 
-    public function setDocumentType(int $documentType): ParsedDocumentData
+    public function setDocumentType(string $documentType): ParsedDocumentData
     {
         $this->documentType = $documentType;
 

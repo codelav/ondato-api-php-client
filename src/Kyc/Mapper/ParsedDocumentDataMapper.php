@@ -13,12 +13,12 @@ class ParsedDocumentDataMapper implements NormalizerInterface, DenormalizerInter
     {
         $parsedDocumentData = new ParsedDocumentData();
 
-        if (isset($data['personCode'])) {
-            $parsedDocumentData->setPersonCode($data['personCode']);
+        if (isset($data['personalIdentityCode'])) {
+            $parsedDocumentData->setPersonCode($data['personalIdentityCode']);
         }
 
-        if (isset($data['birthdate'])) {
-            $parsedDocumentData->setBirthDate($data['birthdate']);
+        if (isset($data['dateOfBirth'])) {
+            $parsedDocumentData->setBirthDate($data['dateOfBirth']);
         }
 
         if (isset($data['firstName'])) {
@@ -41,12 +41,12 @@ class ParsedDocumentDataMapper implements NormalizerInterface, DenormalizerInter
             $parsedDocumentData->setDocumentType($data['documentType']);
         }
 
-        if (isset($data['expireDate'])) {
-            $parsedDocumentData->setExpireDate($data['expireDate']);
+        if (isset($data['dateOfExpiration'])) {
+            $parsedDocumentData->setExpireDate($data['dateOfExpiration']);
         }
 
-        if (isset($data['issueDate'])) {
-            $parsedDocumentData->setIssueDate($data['issueDate']);
+        if (isset($data['dateOfIssue'])) {
+            $parsedDocumentData->setIssueDate($data['dateOfIssue']);
         }
 
         if (isset($data['country'])) {

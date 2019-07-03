@@ -62,7 +62,7 @@ class KycApiClient
 
         try {
             $response = $this->client->request(
-                'POST',
+                'GET',
                 "/kyc/identifications/$identificationId/data",
                 [
                     'headers' => ['x-api-key' => $this->apiKey]
