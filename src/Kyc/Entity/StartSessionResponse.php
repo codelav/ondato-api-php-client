@@ -5,17 +5,32 @@ namespace Velser\OndatoApiClient\Kyc\Entity;
 
 class StartSessionResponse
 {
-    private $token;
+    private $identificationId;
+    private $redirectUrl;
 
-    public function getToken(): string
+    public function getIdentificationId(): string
     {
-        return $this->token;
+        return $this->identificationId;
     }
 
-    public function setToken(string $token): StartSessionResponse
+    public function setIdentificationId($identificationId): StartSessionResponse
     {
-        $this->token = $token;
+        $this->identificationId = $identificationId;
 
         return $this;
     }
+
+    public function getRedirectUrl(): string
+    {
+        return $this->redirectUrl;
+    }
+
+    public function setRedirectUrl(string $redirectUrl): StartSessionResponse
+    {
+        $this->redirectUrl = $redirectUrl;
+
+        return $this;
+    }
+
+
 }

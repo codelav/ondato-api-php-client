@@ -36,7 +36,7 @@ class VerifidApiClient
         $this->username = $username;
         $this->password = $password;
     }
-
+    
     public function createToken(): CreateTokenResponse
     {
         try {

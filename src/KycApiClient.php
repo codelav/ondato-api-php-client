@@ -35,16 +35,19 @@ class KycApiClient
             throw new LogicException('Start session request must have session data');
         }
 
-        $startSessionRequest->setApiKey($this->apiKey);
-
         $startSessionMapper = new StartSessionMapper(new SessionDataMapper());
 
         try {
             $response = $this->client->request(
                 'POST',
-                '/kyc/start-session',
+                '/kyc/identifications/start',
                 [
                     'json' => $startSessionMapper->mapFromEntity($startSessionRequest),
+                ],
+                [
+                    'headers' => [
+                        'x-api-key' => $this->apiKey
+                    ]
                 ]
             );
 
@@ -75,32 +78,6 @@ class KycApiClient
             );
 
             return $getDataMapper->mapToEntity(json_decode($response->getBody()->getContents(), true));
-        } catch (ClientException $exception) {
-            $this->handleClientException($exception);
-
-            throw $exception;
-        }
-    }
-
-    public function getStatus(string $email): GetStatusResponse
-    {
-        $getStatusRequest = (new GetStatusRequest())
-            ->setApiKey($this->apiKey)
-            ->setEmail($email)
-        ;
-
-        $getStatusMapper = new GetStatusMapper();
-
-        try {
-            $response = $this->client->request(
-                'POST',
-                '/kyc/get-status',
-                [
-                    'json' => $getStatusMapper->mapFromEntity($getStatusRequest),
-                ]
-            );
-
-            return $getStatusMapper->mapToEntity(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $exception) {
             $this->handleClientException($exception);
 

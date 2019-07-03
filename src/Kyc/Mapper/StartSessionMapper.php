@@ -19,7 +19,9 @@ class StartSessionMapper implements NormalizerInterface, DenormalizerInterface
 
     public function mapToEntity(array $data): StartSessionResponse
     {
-        return (new StartSessionResponse())->setToken($data['token']);
+        return (new StartSessionResponse())
+            ->setIdentificationId($data['identificationId'])
+            ->setRedirectUrl($data['redirectUrl']);
     }
 
     /**
@@ -30,9 +32,7 @@ class StartSessionMapper implements NormalizerInterface, DenormalizerInterface
     public function mapFromEntity($startSessionRequest): array
     {
         return [
-            'apikey' => $startSessionRequest->getApiKey(),
-            'data' => $this->sessionDataMapper->mapFromEntity($startSessionRequest->getSessionData()),
-            'isVideoCallRequest' => $startSessionRequest->isVideoCallRequest(),
+            'requestData' => $this->sessionDataMapper->mapFromEntity($startSessionRequest->getSessionData()),
         ];
     }
 }
