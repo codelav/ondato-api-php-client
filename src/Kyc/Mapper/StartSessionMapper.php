@@ -10,11 +10,12 @@ use Velser\OndatoApiClient\NormalizerInterface;
 
 class StartSessionMapper implements NormalizerInterface, DenormalizerInterface
 {
-    private $sessionDataMapper;
+    private $flowDataMapper;
 
-    public function __construct(SessionDataMapper $sessionDataMapper)
+    public function __construct(SessionDataMapper $sessionDataMapper, FlowDataMapper $flowDataMapper)
     {
         $this->sessionDataMapper = $sessionDataMapper;
+        $this->flowDataMapper = $flowDataMapper;
     }
 
     public function mapToEntity(array $data): StartSessionResponse
@@ -33,6 +34,7 @@ class StartSessionMapper implements NormalizerInterface, DenormalizerInterface
     {
         return [
             'requestData' => $this->sessionDataMapper->mapFromEntity($startSessionRequest->getSessionData()),
+            'flowData' => $this->flowDataMapper->mapFromEntity($startSessionRequest->getFlowData()),
         ];
     }
 }

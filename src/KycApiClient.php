@@ -12,6 +12,7 @@ use Velser\OndatoApiClient\Kyc\Entity\GetStatusRequest;
 use Velser\OndatoApiClient\Kyc\Entity\GetStatusResponse;
 use Velser\OndatoApiClient\Kyc\Entity\StartSessionRequest;
 use Velser\OndatoApiClient\Kyc\Entity\StartSessionResponse;
+use Velser\OndatoApiClient\Kyc\Mapper\FlowDataMapper;
 use Velser\OndatoApiClient\Kyc\Mapper\GetDataMapper;
 use Velser\OndatoApiClient\Kyc\Mapper\GetStatusMapper;
 use Velser\OndatoApiClient\Kyc\Mapper\ParsedDocumentDataMapper;
@@ -35,7 +36,7 @@ class KycApiClient
             throw new LogicException('Start session request must have session data');
         }
 
-        $startSessionMapper = new StartSessionMapper(new SessionDataMapper());
+        $startSessionMapper = new StartSessionMapper(new SessionDataMapper(), new FlowDataMapper());
 
         try {
             $response = $this->client->request(

@@ -6,6 +6,7 @@ namespace Velser\OndatoApiClient\Kyc\Entity;
 class StartSessionRequest
 {
     private $sessionData;
+    private $flowData;
 
     public function getSessionData(): SessionData
     {
@@ -15,6 +16,18 @@ class StartSessionRequest
     public function setSessionData(SessionData $sessionData): StartSessionRequest
     {
         $this->sessionData = $sessionData;
+
+        return $this;
+    }
+
+    public function getFlowData(): FlowData
+    {
+        return $this->flowData;
+    }
+
+    public function setFlowData(FlowData $flowData): StartSessionRequest
+    {
+        $this->flowData = $flowData;
 
         return $this;
     }
