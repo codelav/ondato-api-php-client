@@ -27,6 +27,10 @@ class GetDataMapper implements NormalizerInterface
             ->setStatus($data['identificationData']['status'])
         ;
 
+        if ($data['identificationData']['failReason']) {
+            $getDataResponse->setFailReason($data['identificationData']['failReason']);
+        }
+
         if (isset($data['requestData'])) {
             $getDataResponse->setSessionData($this->sessionDataMapper->mapToEntity($data['data']));
         }

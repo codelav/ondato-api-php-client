@@ -71,18 +71,19 @@ class KycApiClient
 
             return $getDataMapper->mapToEntity(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $exception) {
-            $this->handleClientException($exception);
+            if ($exception->getResponse()->getStatusCode() === 400) {
+                $data = json_decode($exception->getResponse()->getBody()->getContents(), true);
+
+                return $getDataMapper->mapToEntity([
+                    'identificationData' => [
+                        'status' => $data['status'],
+                        'failReason' => $data['message']
+                    ]
+                ]);
+            }
 
             throw $exception;
         }
     }
 
-    private function handleClientException(ClientException $exception)
-    {
-        if ($exception->getCode() === 400) {
-            throw new WrongFieldsDataException(
-                json_decode($exception->getResponse()->getBody()->getContents(), true)
-            );
-        }
-    }
 }

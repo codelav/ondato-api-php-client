@@ -6,6 +6,7 @@ namespace Velser\OndatoApiClient\Kyc\Entity;
 class GetDataResponse
 {
     private $status;
+    private $failReason;
     private $sessionData;
     private $parsedDocumentData;
 
@@ -20,6 +21,20 @@ class GetDataResponse
 
         return $this;
     }
+
+    public function getFailReason(): string
+    {
+        return $this->failReason;
+    }
+
+    public function setFailReason(string $failReason): GetDataResponse
+    {
+        $this->failReason = $failReason;
+
+        return $this;
+    }
+
+
 
     public function getSessionData(): ?SessionData
     {
