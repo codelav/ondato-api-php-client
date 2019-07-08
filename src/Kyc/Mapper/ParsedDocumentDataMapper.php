@@ -13,16 +13,20 @@ class ParsedDocumentDataMapper implements NormalizerInterface, DenormalizerInter
     {
         $parsedDocumentData = new ParsedDocumentData();
 
-        if (isset($data['personCode'])) {
-            $parsedDocumentData->setPersonCode($data['personCode']);
+        if (isset($data['personalIdentityCode'])) {
+            $parsedDocumentData->setPersonCode($data['personalIdentityCode']);
         }
 
-        if (isset($data['birthdate'])) {
-            $parsedDocumentData->setBirthDate($data['birthdate']);
+        if (isset($data['dateOfBirth'])) {
+            $parsedDocumentData->setBirthDate($data['dateOfBirth']);
         }
 
         if (isset($data['firstName'])) {
             $parsedDocumentData->setFirstName($data['firstName']);
+        }
+
+        if (isset($data['middleName'])) {
+            $parsedDocumentData->setMiddleName($data['middleName']);
         }
 
         if (isset($data['lastName'])) {
@@ -37,8 +41,12 @@ class ParsedDocumentDataMapper implements NormalizerInterface, DenormalizerInter
             $parsedDocumentData->setDocumentType($data['documentType']);
         }
 
-        if (isset($data['expireDate'])) {
-            $parsedDocumentData->setExpireDate($data['expireDate']);
+        if (isset($data['dateOfExpiration'])) {
+            $parsedDocumentData->setExpireDate($data['dateOfExpiration']);
+        }
+
+        if (isset($data['dateOfIssue'])) {
+            $parsedDocumentData->setIssueDate($data['dateOfIssue']);
         }
 
         if (isset($data['country'])) {
@@ -47,6 +55,14 @@ class ParsedDocumentDataMapper implements NormalizerInterface, DenormalizerInter
 
         if (isset($data['nationality'])) {
             $parsedDocumentData->setNationality($data['nationality']);
+        }
+
+        if (isset($data['gender'])) {
+            $parsedDocumentData->setGender($data['gender']);
+        }
+
+        if (isset($data['address'])) {
+            $parsedDocumentData->setAddress($data['address']);
         }
 
         return $parsedDocumentData;

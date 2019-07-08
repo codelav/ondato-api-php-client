@@ -76,7 +76,7 @@ class SessionDataMapper implements NormalizerInterface, DenormalizerInterface
             'birthDate' => $entity->getBirthDate(),
             'firstName' => $entity->getFirstName(),
             'lastName' => $entity->getLastName(),
-            'personCode' => $entity->getPersonCode(),
+            'personalIdentityCode' => $entity->getPersonalIdentityCode(),
             'phoneNumber' => $entity->getPhoneNumber(),
             'language' => $entity->getLanguage(),
             'nationality' => $entity->getNationality(),

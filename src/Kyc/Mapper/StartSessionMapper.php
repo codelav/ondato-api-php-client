@@ -10,16 +10,19 @@ use Velser\OndatoApiClient\NormalizerInterface;
 
 class StartSessionMapper implements NormalizerInterface, DenormalizerInterface
 {
-    private $sessionDataMapper;
+    private $flowDataMapper;
 
-    public function __construct(SessionDataMapper $sessionDataMapper)
+    public function __construct(SessionDataMapper $sessionDataMapper, FlowDataMapper $flowDataMapper)
     {
         $this->sessionDataMapper = $sessionDataMapper;
+        $this->flowDataMapper = $flowDataMapper;
     }
 
     public function mapToEntity(array $data): StartSessionResponse
     {
-        return (new StartSessionResponse())->setToken($data['token']);
+        return (new StartSessionResponse())
+            ->setIdentificationId($data['identificationId'])
+            ->setRedirectUrl($data['redirectUrl']);
     }
 
     /**
@@ -30,9 +33,8 @@ class StartSessionMapper implements NormalizerInterface, DenormalizerInterface
     public function mapFromEntity($startSessionRequest): array
     {
         return [
-            'apikey' => $startSessionRequest->getApiKey(),
-            'data' => $this->sessionDataMapper->mapFromEntity($startSessionRequest->getSessionData()),
-            'isVideoCallRequest' => $startSessionRequest->isVideoCallRequest(),
+            'requestData' => $this->sessionDataMapper->mapFromEntity($startSessionRequest->getSessionData()),
+            'flowData' => $this->flowDataMapper->mapFromEntity($startSessionRequest->getFlowData()),
         ];
     }
 }

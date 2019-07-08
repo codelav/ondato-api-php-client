@@ -12,6 +12,7 @@ use Velser\OndatoApiClient\Kyc\Entity\GetStatusRequest;
 use Velser\OndatoApiClient\Kyc\Entity\GetStatusResponse;
 use Velser\OndatoApiClient\Kyc\Entity\StartSessionRequest;
 use Velser\OndatoApiClient\Kyc\Entity\StartSessionResponse;
+use Velser\OndatoApiClient\Kyc\Mapper\FlowDataMapper;
 use Velser\OndatoApiClient\Kyc\Mapper\GetDataMapper;
 use Velser\OndatoApiClient\Kyc\Mapper\GetStatusMapper;
 use Velser\OndatoApiClient\Kyc\Mapper\ParsedDocumentDataMapper;
@@ -35,16 +36,15 @@ class KycApiClient
             throw new LogicException('Start session request must have session data');
         }
 
-        $startSessionRequest->setApiKey($this->apiKey);
-
-        $startSessionMapper = new StartSessionMapper(new SessionDataMapper());
+        $startSessionMapper = new StartSessionMapper(new SessionDataMapper(), new FlowDataMapper());
 
         try {
             $response = $this->client->request(
                 'POST',
-                '/kyc/start-session',
+                '/kyc/identifications/start',
                 [
                     'json' => $startSessionMapper->mapFromEntity($startSessionRequest),
+                    'headers' => ['x-api-key' => $this->apiKey]
                 ]
             );
 
@@ -56,64 +56,34 @@ class KycApiClient
         }
     }
 
-    public function getData(string $token)
+    public function getData(string $identificationId)
     {
-        $getDataRequest = (new GetDataRequest())
-            ->setApiKey($this->apiKey)
-            ->setToken($token)
-        ;
-
         $getDataMapper = new GetDataMapper(new SessionDataMapper(), new ParsedDocumentDataMapper());
 
         try {
             $response = $this->client->request(
-                'POST',
-                '/kyc/get-data',
+                'GET',
+                '/kyc/identifications/' . $identificationId . '/data',
                 [
-                    'json' => $getDataMapper->mapFromEntity($getDataRequest),
+                    'headers' => ['x-api-key' => $this->apiKey]
                 ]
             );
 
             return $getDataMapper->mapToEntity(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $exception) {
-            $this->handleClientException($exception);
+            if ($exception->getResponse()->getStatusCode() === 400) {
+                $data = json_decode($exception->getResponse()->getBody()->getContents(), true);
+
+                return $getDataMapper->mapToEntity([
+                    'identificationData' => [
+                        'status' => $data['status'],
+                        'failReason' => $data['message']
+                    ]
+                ]);
+            }
 
             throw $exception;
         }
     }
 
-    public function getStatus(string $email): GetStatusResponse
-    {
-        $getStatusRequest = (new GetStatusRequest())
-            ->setApiKey($this->apiKey)
-            ->setEmail($email)
-        ;
-
-        $getStatusMapper = new GetStatusMapper();
-
-        try {
-            $response = $this->client->request(
-                'POST',
-                '/kyc/get-status',
-                [
-                    'json' => $getStatusMapper->mapFromEntity($getStatusRequest),
-                ]
-            );
-
-            return $getStatusMapper->mapToEntity(json_decode($response->getBody()->getContents(), true));
-        } catch (ClientException $exception) {
-            $this->handleClientException($exception);
-
-            throw $exception;
-        }
-    }
-
-    private function handleClientException(ClientException $exception)
-    {
-        if ($exception->getCode() === 400) {
-            throw new WrongFieldsDataException(
-                json_decode($exception->getResponse()->getBody()->getContents(), true)
-            );
-        }
-    }
 }

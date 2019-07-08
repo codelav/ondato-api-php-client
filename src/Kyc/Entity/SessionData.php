@@ -9,7 +9,7 @@ class SessionData
     private $birthDate;
     private $firstName;
     private $lastName;
-    private $personCode;
+    private $personalIdentityCode;
     private $phoneNumber;
     private $language;
     private $nationality;
@@ -66,14 +66,14 @@ class SessionData
         return $this;
     }
 
-    public function getPersonCode(): ?string
+    public function getPersonalIdentityCode(): ?string
     {
-        return $this->personCode;
+        return $this->personalIdentityCode;
     }
 
-    public function setPersonCode(string $personCode): SessionData
+    public function setPersonalIdentityCode(string $personalIdentityCode): SessionData
     {
-        $this->personCode = $personCode;
+        $this->personalIdentityCode = $personCode;
 
         return $this;
     }

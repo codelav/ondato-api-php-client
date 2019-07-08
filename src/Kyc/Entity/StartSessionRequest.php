@@ -5,21 +5,8 @@ namespace Velser\OndatoApiClient\Kyc\Entity;
 
 class StartSessionRequest
 {
-    private $apiKey;
     private $sessionData;
-    private $isVideoCallRequest = false;
-
-    public function getApiKey(): string
-    {
-        return $this->apiKey;
-    }
-
-    public function setApiKey(string $apiKey): StartSessionRequest
-    {
-        $this->apiKey = $apiKey;
-
-        return $this;
-    }
+    private $flowData;
 
     public function getSessionData(): SessionData
     {
@@ -33,14 +20,14 @@ class StartSessionRequest
         return $this;
     }
 
-    public function isVideoCallRequest(): bool
+    public function getFlowData(): FlowData
     {
-        return $this->isVideoCallRequest;
+        return $this->flowData;
     }
 
-    public function setIsVideoCallRequest(bool $isVideoCallRequest): StartSessionRequest
+    public function setFlowData(FlowData $flowData): StartSessionRequest
     {
-        $this->isVideoCallRequest = $isVideoCallRequest;
+        $this->flowData = $flowData;
 
         return $this;
     }
