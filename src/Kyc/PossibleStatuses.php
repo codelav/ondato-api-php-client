@@ -5,7 +5,7 @@ namespace Velser\OndatoApiClient\Kyc;
 
 final class PossibleStatuses
 {
-    const STATUS_BAD_REQUEST = 'IDENTIFICATION_NOT_FOUND';
+    const STATUS_BAD_REQUEST = 'BAD_REQUEST';
     const STATUS_IDENTIFICATION_NOT_FOUND = 'IDENTIFICATION_NOT_FOUND';
     const STATUS_SESSION_NOT_CREATED = 'SESSION_NOT_CREATED';
 
