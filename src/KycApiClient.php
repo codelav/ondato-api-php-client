@@ -63,10 +63,10 @@ class KycApiClient
         try {
             $response = $this->client->request(
                 'GET',
-                "/kyc/identifications/$identificationId/data",
+                '/kyc/identifications/' . $identificationId . '/data',
                 [
                     'headers' => ['x-api-key' => $this->apiKey]
-                ],
+                ]
             );
 
             return $getDataMapper->mapToEntity(json_decode($response->getBody()->getContents(), true));
