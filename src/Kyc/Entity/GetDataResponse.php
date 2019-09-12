@@ -22,7 +22,7 @@ class GetDataResponse
         return $this;
     }
 
-    public function getFailReason(): string
+    public function getFailReason(): ?string
     {
         return $this->failReason;
     }

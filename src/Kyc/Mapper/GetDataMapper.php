@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace Velser\OndatoApiClient\Kyc\Mapper;
 
-use Velser\OndatoApiClient\Kyc\Entity\GetDataRequest;
 use Velser\OndatoApiClient\Kyc\Entity\GetDataResponse;
-use Velser\OndatoApiClient\DenormalizerInterface;
 use Velser\OndatoApiClient\NormalizerInterface;
 
 class GetDataMapper implements NormalizerInterface
@@ -27,7 +25,7 @@ class GetDataMapper implements NormalizerInterface
             ->setStatus($data['identificationData']['status'])
         ;
 
-        if ($data['identificationData']['failReason']) {
+        if (isset($data['identificationData']['failReason'])) {
             $getDataResponse->setFailReason($data['identificationData']['failReason']);
         }
 
