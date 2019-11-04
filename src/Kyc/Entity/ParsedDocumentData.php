@@ -31,7 +31,7 @@ class ParsedDocumentData
         return $this;
     }
 
-    public function getIssueDate(): string
+    public function getIssueDate(): ?string
     {
         return $this->issueDate;
     }
@@ -43,7 +43,7 @@ class ParsedDocumentData
         return $this;
     }
 
-    public function getGender(): string
+    public function getGender(): ?string
     {
         return $this->gender;
     }
@@ -55,7 +55,7 @@ class ParsedDocumentData
         return $this;
     }
 
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
@@ -91,14 +91,14 @@ class ParsedDocumentData
         return $this;
     }
 
-    public function geMiddleName(): ?string
+    public function getMiddleName(): ?string
     {
-        return $this->firstName;
+        return $this->middleName;
     }
 
-    public function setMiddleName(string $firstName): ParsedDocumentData
+    public function setMiddleName(string $middleName): ParsedDocumentData
     {
-        $this->firstName = $firstName;
+        $this->middleName = $middleName;
 
         return $this;
     }
