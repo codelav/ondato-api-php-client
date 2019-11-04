@@ -50,8 +50,6 @@ class KycApiClient
 
             return $startSessionMapper->mapToEntity(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $exception) {
-            $this->handleClientException($exception);
-
             throw $exception;
         }
     }
