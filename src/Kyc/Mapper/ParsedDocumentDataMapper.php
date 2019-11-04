@@ -89,6 +89,10 @@ class ParsedDocumentDataMapper implements NormalizerInterface, DenormalizerInter
             $data['firstName'] = $entity->getFirstName();
         }
 
+        if ($entity->getMiddleName() !== null) {
+            $data['middleName'] = $entity->getMiddleName();
+        }
+
         if ($entity->getLastName() !== null) {
             $data['lastName'] = $entity->getLastName();
         }
@@ -105,12 +109,24 @@ class ParsedDocumentDataMapper implements NormalizerInterface, DenormalizerInter
             $data['expireDate'] = $entity->getExpireDate();
         }
 
+        if ($entity->getIssueDate() !== null) {
+            $data['issueDate'] = $entity->getIssueDate();
+        }
+
         if ($entity->getCountry() !== null) {
             $data['country'] = $entity->getCountry();
         }
 
         if ($entity->getNationality() !== null) {
             $data['nationality'] = $entity->getNationality();
+        }
+
+        if ($entity->getGender() !== null) {
+            $data['gender'] = $entity->getGender();
+        }
+
+        if ($entity->getAddress() !== null) {
+            $data['address'] = $entity->getAddress();
         }
 
         return $data;
