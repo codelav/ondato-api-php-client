@@ -41,7 +41,7 @@ class KycApiClient
         try {
             $response = $this->client->request(
                 'POST',
-                '/kyc/identifications/start',
+                '/identifications/start',
                 [
                     'json' => $startSessionMapper->mapFromEntity($startSessionRequest),
                     'headers' => ['x-api-key' => $this->apiKey]
@@ -61,7 +61,7 @@ class KycApiClient
         try {
             $response = $this->client->request(
                 'GET',
-                '/kyc/identifications/' . $identificationId . '/data',
+                '/identifications/' . $identificationId . '/data',
                 [
                     'headers' => ['x-api-key' => $this->apiKey]
                 ]
