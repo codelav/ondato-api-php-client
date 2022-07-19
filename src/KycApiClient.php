@@ -54,7 +54,7 @@ class KycApiClient
         }
     }
 
-    public function getData(string $identificationId)
+    public function getData(string $identificationId, bool $raw = false)
     {
         $getDataMapper = new GetDataMapper(new SessionDataMapper(), new ParsedDocumentDataMapper());
 
@@ -67,21 +67,18 @@ class KycApiClient
                 ]
             );
 
-            return $getDataMapper->mapToEntity(json_decode($response->getBody()->getContents(), true));
+            $responseData = json_decode($response->getBody()->getContents(), true);
+
+            return $raw ? $responseData : $getDataMapper->mapToEntity($responseData);
         } catch (ClientException $exception) {
             if ($exception->getResponse()->getStatusCode() === 400) {
                 $data = json_decode($exception->getResponse()->getBody()->getContents(), true);
+                $rawData = ['identificationData' => ['status' => $data['status'], 'failReason' => $data['message']]];
 
-                return $getDataMapper->mapToEntity([
-                    'identificationData' => [
-                        'status' => $data['status'],
-                        'failReason' => $data['message']
-                    ]
-                ]);
+                return $raw ? $rawData : $getDataMapper->mapToEntity($rawData);
             }
 
             throw $exception;
         }
     }
-
 }
