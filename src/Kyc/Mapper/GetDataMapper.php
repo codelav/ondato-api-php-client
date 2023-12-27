@@ -30,7 +30,7 @@ class GetDataMapper implements NormalizerInterface
         }
 
         if (isset($data['requestData'])) {
-            $getDataResponse->setSessionData($this->sessionDataMapper->mapToEntity($data['data']));
+            $getDataResponse->setSessionData($this->sessionDataMapper->mapToEntity($data['requestData']));
         }
 
         if (isset($data['documentData'])) {
